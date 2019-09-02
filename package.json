@@ -1,8 +1,9 @@
 {
-  "name": "pom",
+  "name": "pomodoro",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@becode/eslint-config": "^0.5.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
