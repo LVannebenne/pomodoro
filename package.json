@@ -1,0 +1,50 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "Pomodoro with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LVannebenne/pomodoro.git"
+  },
+  "keywords": [
+    "React",
+    "Pomodoro",
+    "Timer"
+  ],
+  "author": "Lindsay Vannebenne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LVannebenne/pomodoro/issues"
+  },
+  "homepage": "https://github.com/LVannebenne/pomodoro#readme",
+  "devDependencies": {
+    "@becode/eslint-config": "^0.5.2",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-unicorn": "^10.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npx eslint --fix --cache",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.3",
+    "react-app": "^1.1.2"
+  }
+}
