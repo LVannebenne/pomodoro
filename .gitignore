@@ -93,4 +93,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+.eslintrc.js
+.babelrc
+
+.cache/
+
 # End of https://www.gitignore.io/api/node
