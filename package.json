@@ -10,11 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/LVannebenne/pomodoro.git"
   },
-  "keywords": ['Pomodoro', 'timer', 'React'],
+  "keywords": [
+    "Pomodoro",
+    "timer",
+    "React"
+  ],
   "author": "Lindsay Vannebenne",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LVannebenne/pomodoro/issues"
   },
-  "homepage": "https://github.com/LVannebenne/pomodoro#readme"
+  "homepage": "https://github.com/LVannebenne/pomodoro#readme",
+  "dependencies": {
+    "@becode/eslint-config": "^0.5.2"
+  }
 }
