@@ -2,6 +2,7 @@ import React from "react";
 import ms from "pretty-ms";
 import ReactDOM from "react-dom";
 import Header from "./components/header";
+import Button from "./components/button";
 import "./scss/index.scss";
 
 class Timer extends React.Component {
@@ -13,27 +14,28 @@ class Timer extends React.Component {
             isOn: false,
             hasStart: false,
         };
-        this.handleStartTimer = this.handleStartTimer.bind(this);
-        this.handleStopTimer = this.handleStopTimer.bind(this);
-        this.handleResetTimer = this.handleResetTimer.bind(this);
-        this.handleAddTimer = this.handleAddTimer.bind(this);
-        this.handleSubTimer = this.handleSubTimer.bind(this);
+        this.StartTimer = this.handleStartTimer.bind(this);
+        this.StopTimer = this.handleStopTimer.bind(this);
+        this.ResetTimer = this.handleResetTimer.bind(this);
+        this.AddTimer = this.handleAddTimer.bind(this);
+        this.SubTimer = this.handleSubTimer.bind(this);
     }
     handleStartTimer() {
-        console.log(this.state.time);
         this.setState(prevState => ({
             time: prevState.time,
             start: Date.now() - prevState.time,
             isOn: true,
             hasStart: true,
         }));
-        this.timer = setInterval(
-            () =>
+        this.timer = setInterval(() => {
+            if (this.state.time >= 60000) {
+                clearInterval(this.timer);
+            } else {
                 this.setState(prevState => ({
                     time: Date.now() - prevState.start,
-                })),
-            1000,
-        );
+                }));
+            }
+        }, 1000);
     }
 
     handleStopTimer() {
@@ -63,43 +65,31 @@ class Timer extends React.Component {
     render() {
         const start =
             this.state.time === 0 || !this.state.hasStart ? (
-                <button type={"button"} onClick={this.handleStartTimer}>
-                    {`Start`}
-                </button>
+                <Button value={"Start"} handleFunc={this.StartTimer} />
             ) : null;
         const stop = this.state.isOn ? (
-            <button type={"button"} onClick={this.handleStopTimer}>
-                {`Stop`}
-            </button>
+            <Button value={"Stop"} handleFunc={this.StopTimer} />
         ) : null;
         const reset =
             this.state.time !== 0 && !this.state.isOn && this.state.hasStart ? (
-                <button type={"button"} onClick={this.handleResetTimer}>
-                    {`Reset`}
-                </button>
+                <Button value={"Reset"} handleFunc={this.ResetTimer} />
             ) : null;
         const resume =
             this.state.time !== 0 && !this.state.isOn && this.state.hasStart ? (
-                <button type={"button"} onClick={this.handleStartTimer}>
-                    {`Resume`}
-                </button>
+                <Button value={"Resume"} handleFunc={this.StartTimer} />
             ) : null;
         const addMinute =
             !this.state.isOn && !this.state.hasStart ? (
-                <button type={"button"} onClick={this.handleAddTimer}>
-                    {`+`}
-                </button>
+                <Button value={" + "} handleFunc={this.AddTimer} />
             ) : null;
         const subMinute =
             !this.state.isOn && !this.state.hasStart ? (
-                <button type={"button"} onClick={this.handleSubTimer}>
-                    {`-`}
-                </button>
+                <Button value={" - "} handleFunc={this.SubTimer} />
             ) : null;
         return (
             <div>
                 <Header />
-                <h3>{`${ms(10 * 60 * 1000 - this.state.time)}`}</h3>
+                <h3>{`${ms(this.state.time)}`}</h3>
                 {addMinute}
                 {start}
                 {resume}
