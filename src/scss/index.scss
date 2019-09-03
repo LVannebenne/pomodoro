@@ -1,24 +1,39 @@
 $imgdir: "../img/";
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
 body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background: url($imgdir + 'chichi.webp');
+    //background: url($imgdir + 'chichi.webp');
+    background-color: #4D4;
     background-size: 100vh;
     background-repeat: no-repeat;
-    color: red;
 }
 
 .navbar {
     background-color: #333;
-    padding: 20px 0px;
-    a{
-        &:link, &:hover, &:visited, &:active {
-            text-decoration: none;
-            font-weight: 700;
-            color: #DDD;
-            text-shadow: 1px 1px 2px #000;
-        }
-    }
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #DDD;
+    text-shadow: 1px 1px 2px #000;
+}
+
+h3 {
+    color: darkblue;
+    font-size: 4rem;
+    border-radius: 5px;
+    background-color: #FFF;
+
+}
+
+button {
+    background-color: #222;
+    color: #FFF;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px 15px;
 }
