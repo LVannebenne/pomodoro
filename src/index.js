@@ -11,6 +11,14 @@ const formatTime = time => {
     return `${min}m ${sec}s`;
 };
 
+const rand = (min, max) => min + Math.random() * (max - min);
+const getRandomBackgroundColor = () => {
+    const h = rand(1, 360);
+    const s = rand(25, 100);
+    const l = rand(10, 90);
+    document.body.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+    return [h, s, l - 20];
+};
 class Timer extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +29,7 @@ class Timer extends React.Component {
             hasStart: false,
             timeSet: 1000 * 60,
             show: false,
+            backgroundColor: getRandomBackgroundColor(),
         };
         this.StartTimer = this.handleStartTimer.bind(this);
         this.StopTimer = this.handleStopTimer.bind(this);
@@ -118,8 +127,11 @@ class Timer extends React.Component {
             !this.state.isOn && !this.state.hasStart ? (
                 <Button value={" - "} handleFunc={this.SubTimer} />
             ) : null;
+
+        const [h, s, l] = this.state.backgroundColor;
         return (
             <div>
+                <p>{"Refresh the page to get a new color !"}</p>
                 <Header />
                 <Modal
                     show={this.state.show}
@@ -128,7 +140,7 @@ class Timer extends React.Component {
                     <p> {"C'est..."}</p>
                     <h1>{"L'heure de la Pause"}</h1>
                 </Modal>
-                <h3>
+                <h3 style={{color: `hsl(${h}, ${s}%, ${l}%)`}}>
                     {`${formatTime(this.state.timeSet - this.state.time, {
                         separateMilliseconds: true,
                     })}`}

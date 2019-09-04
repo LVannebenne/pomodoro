@@ -1,12 +1,14 @@
 $imgdir: "../img/";
 @import url('https://fonts.googleapis.com/css?family=Lobster|Roboto&display=swap');
+$randomBaseColor: #3452FF;
+
 
 body {
     margin: 0;
     padding: 0;
     text-align: center;
     //background: url($imgdir + 'chichi.webp');
-    background-color: #4D4;
+    background-color: $randomBaseColor;
     background-size: 100vh;
     background-repeat: no-repeat;
     font-family: 'Roboto', sans-serif;
@@ -26,7 +28,7 @@ body {
 }
 
 h3 {
-    color: #36802F;
+    color: scale-color($randomBaseColor, $saturation: -50%, $lightness: -50%);
     font-size: 4rem;
     border-radius: 5px;
     background-color: #FFF;
