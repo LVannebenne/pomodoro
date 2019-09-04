@@ -1,10 +1,15 @@
 import React from "react";
-import ms from "pretty-ms";
 import ReactDOM from "react-dom";
 import Header from "./components/header";
 import Button from "./components/button";
 import Modal from "./components/modal";
 import "./scss/index.scss";
+
+const formatTime = time => {
+    const min = Math.floor((time / (1000 * 60)) % 60);
+    const sec = Math.floor((time / 1000) % 60);
+    return `${min}m ${sec}s`;
+};
 
 class Timer extends React.Component {
     constructor(props) {
@@ -49,7 +54,7 @@ class Timer extends React.Component {
         }));
 
         this.timer = setInterval(() => {
-            if (this.state.time >= this.state.timeSet) {
+            if (this.state.time >= this.state.timeSet - 1000) {
                 clearInterval(this.timer);
                 this.setState({
                     time: 0,
@@ -120,10 +125,14 @@ class Timer extends React.Component {
                     show={this.state.show}
                     onClose={this.handleHideModal}
                     onNew={this.handleCloseAndStartNew}>
-                    <p> {"et C'est..."}</p>
-                    <h1>{"L'heure de la PAUSE"}</h1>
+                    <p> {"C'est..."}</p>
+                    <h1>{"L'heure de la Pause"}</h1>
                 </Modal>
-                <h3>{`${ms(this.state.timeSet - this.state.time)}`}</h3>
+                <h3>
+                    {`${formatTime(this.state.timeSet - this.state.time, {
+                        separateMilliseconds: true,
+                    })}`}
+                </h3>
                 {addMinute}
                 {start}
                 {resume}
