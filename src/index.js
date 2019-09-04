@@ -131,7 +131,9 @@ class Timer extends React.Component {
         const [h, s, l] = this.state.backgroundColor;
         return (
             <div>
-                <p>{"Refresh the page to get a new color !"}</p>
+                <p className={"info"}>
+                    {"Refresh the page to get a new color !"}
+                </p>
                 <Header />
                 <Modal
                     show={this.state.show}
