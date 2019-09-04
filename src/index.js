@@ -3,6 +3,7 @@ import ms from "pretty-ms";
 import ReactDOM from "react-dom";
 import Header from "./components/header";
 import Button from "./components/button";
+import Modal from "./components/modal";
 import "./scss/index.scss";
 
 class Timer extends React.Component {
@@ -13,13 +14,32 @@ class Timer extends React.Component {
             start: 0,
             isOn: false,
             hasStart: false,
+            timeSet: 1000 * 60,
+            show: false,
         };
         this.StartTimer = this.handleStartTimer.bind(this);
         this.StopTimer = this.handleStopTimer.bind(this);
         this.ResetTimer = this.handleResetTimer.bind(this);
         this.AddTimer = this.handleAddTimer.bind(this);
         this.SubTimer = this.handleSubTimer.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.handleHideModal = this.hideModal.bind(this);
+        this.handleCloseAndStartNew = this.closeAndStartNew.bind(this);
     }
+
+    showModal() {
+        this.setState({show: true});
+    }
+
+    hideModal() {
+        this.setState({show: false});
+    }
+
+    closeAndStartNew() {
+        this.setState({show: false});
+        this.handleStartTimer();
+    }
+
     handleStartTimer() {
         this.setState(prevState => ({
             time: prevState.time,
@@ -27,9 +47,16 @@ class Timer extends React.Component {
             isOn: true,
             hasStart: true,
         }));
+
         this.timer = setInterval(() => {
-            if (this.state.time >= 60000) {
+            if (this.state.time >= this.state.timeSet) {
                 clearInterval(this.timer);
+                this.setState({
+                    time: 0,
+                    isOn: false,
+                    hasStart: false,
+                });
+                this.showModal();
             } else {
                 this.setState(prevState => ({
                     time: Date.now() - prevState.start,
@@ -52,13 +79,13 @@ class Timer extends React.Component {
 
     handleAddTimer() {
         this.setState(prevState => ({
-            time: prevState.time - 60 * 1000,
+            timeSet: prevState.timeSet + 60 * 1000,
         }));
     }
 
     handleSubTimer() {
         this.setState(prevState => ({
-            time: prevState.time + 60 * 1000,
+            timeSet: prevState.timeSet - 60 * 1000,
         }));
     }
 
@@ -89,7 +116,14 @@ class Timer extends React.Component {
         return (
             <div>
                 <Header />
-                <h3>{`${ms(this.state.time)}`}</h3>
+                <Modal
+                    show={this.state.show}
+                    onClose={this.handleHideModal}
+                    onNew={this.handleCloseAndStartNew}>
+                    <p> {"et C'est..."}</p>
+                    <h1>{"L'heure de la PAUSE"}</h1>
+                </Modal>
+                <h3>{`${ms(this.state.timeSet - this.state.time)}`}</h3>
                 {addMinute}
                 {start}
                 {resume}
