@@ -21,4 +21,4 @@ to launch the app in a local server.
 
 ## Author
 
-* Lindsay Vannebenne (http://lvannebenne.github.com)
+* Lindsay Vannebenne (https://github.com/LVannebenne)
