@@ -149,10 +149,10 @@ class Timer extends React.Component {
                         separateMilliseconds: true,
                     })}`}
                 </h3>
-                {addMinute}
+                {subMinute}
                 {start}
                 {resume}
-                {subMinute}
+                {addMinute}
                 {stop}
                 {reset}
             </div>

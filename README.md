@@ -9,7 +9,7 @@ This is an adjustable Timer made to balance Working Time and breaks.
 
 ## Usage
 
-The timer is visible on [Netlify](http://lvannebenne.netlify.com)
+The timer is visible on [Netlify](http://lvannebenne-pomodoro.netlify.com)
 
 You can also clone this repository and, in a terminal, in the directory : 
 
