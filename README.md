@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/427223d1-5e43-4b72-a113-0e10235cded2/deploy-status)](https://app.netlify.com/sites/lvannebenne-pomodoro/deploys)
 # Pomodoro with React
 
 This project has been realized while BeCode Training in Liège - I'm a part of Hamilton 2.12 promotion.
