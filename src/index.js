@@ -98,9 +98,11 @@ class Timer extends React.Component {
     }
 
     handleSubTimer() {
-        this.setState(prevState => ({
-            timeSet: prevState.timeSet - 60 * 1000,
-        }));
+        if (this.state.timeSet > 0) {
+            this.setState(prevState => ({
+                timeSet: prevState.timeSet - 60 * 1000,
+            }));
+        }
     }
 
     render() {
